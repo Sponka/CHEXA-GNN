@@ -40,8 +40,8 @@ env/
 # Jupyter
 .ipynb_checkpoints/
 
-# Model files (too large)
-*.pt
+# Model files (too large) - Comment out to include trained weights
+# *.pt
 *.pth
 *.ckpt
 
