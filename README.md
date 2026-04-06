@@ -19,21 +19,46 @@ Disequilibrium chemistry is important for exoplanet atmospheric retrievals, but 
 - improved performance relative to the previous U-Net surrogate
 - evaluated in abundance space and through transmission spectra
 
-## Repository contents
 
-**INFORMATION NEEDED**  
-Describe briefly what each folder contains once uploaded. For example:
+## Repository structure
 
-- `src/` — model architecture, training, and inference
-- `data/` — processed metadata or example inputs
-- `notebooks/` — exploratory analysis and visualisation
-- `scripts/` — training and evaluation scripts
-- `figures/` — figures from the paper
-- `requirements.txt` or `environment.yml` — dependencies
+```text
+CHEXA-GNN/
+├── data/                       # Split CSVs and training data locations
+│   ├── train_split.csv
+│   ├── val_split.csv
+│   └── test_split.csv
+├── models/                     # Core architecture
+│   ├── __init__.py
+│   ├── encoders.py             # EdgeMLP, GlobalEncoder, NodeUpdateMLP
+│   ├── layers.py               # CustomGNNLayer
+│   └── gnn_model.py            # Main GNNModel
+├── run_samples/                # Preprocessed samples for inference
+│   └── .gitkeep
+├── scripts/                    # Entry points
+│   ├── predict.py              # Run inference on preprocessed samples
+│   └── train.py                # Train the final architecture
+├── src/                        # Source logic
+│   ├── __init__.py
+│   ├── config.py               # Paths and hyperparameters
+│   ├── constants.py            # Molecules and fixed metadata
+│   ├── dataset.py              # AtmosphereGraphDataset
+│   ├── inference.py            # Prediction logic
+│   ├── training.py             # Training loop
+│   └── utils.py                # Reproducibility and helper functions
+├── trained_network/            # Saved trained weights
+│   ├── .gitkeep
+│   └── trained_chexa-gnn.pt
+├── requirements.txt
+└── README.md
 
-## Status
+## Requirements
+numpy==2.2.5
+pandas==2.3.3
+scipy==1.15.3
+torch>=2.5,<2.6
+torch-geometric==2.7.0
 
-This repository is currently being prepared for public release. Code, documentation, and reproducibility instructions will be added progressively.
 
 ## Paper
 
@@ -49,14 +74,3 @@ Antonia Vojtekova, Kai Hou Yip, Ingo P. Waldmann, Nikolaos Nikolaou, Olivia Veno
 
 The model is trained on atmospheres generated using equilibrium chemistry, disequilibrium kinetic calculations, and extracted reaction rates.
 
-**INFORMATION NEEDED**  
-- whether data will be uploaded to this repository
-- whether only processed data will be shared
-- external download link, DOI, or contact method
-- licence or access restrictions
-
-## Installation
-
-```bash
-git clone https://github.com/Sponka/CHEXA-GNN.git
-cd CHEXA-GNN
