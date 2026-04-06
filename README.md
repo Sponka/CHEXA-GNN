@@ -51,7 +51,7 @@ CHEXA-GNN/
 │   └── trained_chexa-gnn.pt
 ├── requirements.txt
 └── README.md
-
+```
 ## Requirements
 numpy==2.2.5
 pandas==2.3.3
